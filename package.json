@@ -1,0 +1,22 @@
+{
+  "name": "react-hello",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "author": "Primoz Susa <primoz.susa@niceclouds.com> (niceclouds.com)",
+  "license": "MIT",
+  "dependencies": {
+    "react": "0.14.2",
+    "react-dom": "0.14.2"
+  },
+  "devDependencies": {
+    "babel-core": "6.1.4",
+    "babel-loader": "6.1.0",
+    "babel-preset-react": "6.1.4",
+    "webpack": "1.12.4",
+    "webpack-dev-server": "1.12.1"
+  }
+}
