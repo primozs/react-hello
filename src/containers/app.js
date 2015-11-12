@@ -1,23 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import InputComponent from '../components/InputComponent';
 import InputList from '../components/InputList';
+import { addItem } from '../actions/appActions';
+
+function mapStateToProps(state) {
+  return {
+    app: state.app
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addItem: (text) => dispatch(addItem(text))
+  }
+}
 
 let App = React.createClass({
   displayName: 'App',
 
-  getInitialState() {
-    return {
-      inputItems: []
-    }
+  propTypes: {
+    app: React.PropTypes.object,
+    addItem: React.PropTypes.func
   },
 
-  _onClick(val) {
-    var items = this.state.inputItems;
-    items.push(val);
-
-    this.setState({
-      inputItems: items
-    });
+  getDefaultProps() {
+    return {
+      app: {
+        items: []
+      }
+    }
   },
 
   render() {
@@ -25,11 +38,14 @@ let App = React.createClass({
       <div>
         <h3>Input - list</h3>
 
-        <InputComponent onClick={this._onClick}/>
-        <InputList items={this.state.inputItems}/>
+        <InputComponent onClick={this.props.addItem}/>
+        <InputList items={this.props.app.items}/>
       </div>
     );
   }
 });
 
-export default App;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
