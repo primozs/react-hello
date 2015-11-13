@@ -1,5 +1,12 @@
+import 'grommet/grommet.min.css'
+
 import React from 'react';
 import { connect } from 'react-redux';
+
+import App from 'grommet/components/App'
+import Header from 'grommet/components/Header'
+import Title from 'grommet/components/Title'
+import Footer from 'grommet/components/Footer'
 
 import InputComponent from '../components/InputComponent';
 import InputList from '../components/InputList';
@@ -17,8 +24,8 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-let App = React.createClass({
-  displayName: 'App',
+let MainApp = React.createClass({
+  displayName: 'MainApp',
 
   propTypes: {
     app: React.PropTypes.object,
@@ -35,12 +42,18 @@ let App = React.createClass({
 
   render() {
     return (
-      <div>
-        <h3>Input - list</h3>
+      <App centered={true}>
+        <Header
+          direction="row"
+          justify="between"
+          large={true}
+          pad={{horizontal: 'medium'}}>
+          <Title>Todo App</Title>
+        </Header>
 
         <InputComponent onClick={this.props.addItem}/>
         <InputList items={this.props.app.items}/>
-      </div>
+      </App>
     );
   }
 });
@@ -48,4 +61,4 @@ let App = React.createClass({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(MainApp);
